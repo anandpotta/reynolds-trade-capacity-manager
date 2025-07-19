@@ -448,19 +448,6 @@ def handle_login(n_clicks, email, password, session_data):
     }
     return new_session, None, '/', True, 0
 
-# Callback for logout
-@dash_app.callback(
-    [Output('session-data', 'data', allow_duplicate=True),
-     Output('url', 'pathname', allow_duplicate=True)],
-    [Input('logout-button', 'n_clicks')],
-    prevent_initial_call=True
-)
-def handle_logout(n_clicks):
-    if n_clicks:
-        return {}, '/'
-    raise PreventUpdate
-
-# Callback for password toggle
 @dash_app.callback(
     [Output('password-input', 'type'),
      Output('password-toggle', 'className')],
@@ -818,15 +805,15 @@ def close_sidebar_on_overlay(overlay_clicks, hamburger_clicks, sidebar_state):
 
 # Callback for logout functionality
 @dash_app.callback(
-    [Output('url', 'pathname', allow_duplicate=True),
-     Output('session-data', 'data', allow_duplicate=True)],
-    [Input('logout-link', 'n_clicks')],
+    [Output('session-data', 'data', allow_duplicate=True),
+     Output('url', 'pathname', allow_duplicate=True)],
+    [Input('logout-button', 'n_clicks')],
     prevent_initial_call=True
 )
 def handle_logout(n_clicks):
     if n_clicks:
-        # Clear session data and redirect to login
-        return '/login', {'authenticated': False}
+        # Clear session data and redirect to root (which will show login page)
+        return {'authenticated': False}, '/'
     raise PreventUpdate
 
 # Callback for page routing within dashboard with animation
@@ -920,40 +907,40 @@ def display_row_details(selected_rows):
     return None
 
 # Callback for map click filtering
-@dash_app.callback(
-    [Output('capacity-grid', 'rowData'),
-     Output('tm-area-dropdown', 'value'),
-     Output('tm-region-dropdown', 'value'),
-     Output('tm-division-dropdown', 'value'),
-     Output('tm-territory-dropdown', 'value')],
-    [Input('capacity-map', 'clickData')],
-    [State('capacity-grid', 'rowData')],
-    prevent_initial_call=True
-)
-def filter_by_map_click(clickData, current_data):
-    if clickData:
-        clicked_state = clickData['points'][0]['text']
+# @dash_app.callback(
+#     [Output('capacity-grid', 'rowData'),
+#      Output('tm-area-dropdown', 'value'),
+#      Output('tm-region-dropdown', 'value'),
+#      Output('tm-division-dropdown', 'value'),
+#      Output('tm-territory-dropdown', 'value')],
+#     [Input('capacity-map', 'clickData')],
+#     [State('capacity-grid', 'rowData')],
+#     prevent_initial_call=True
+# )
+# def filter_by_map_click(clickData, current_data):
+#     if clickData:
+#         clicked_state = clickData['points'][0]['text']
         
-        # Map state abbreviations to areas
-        state_to_area_map = {
-            'CA': 'AW - WESTERN AREA',
-            'TX': 'AW - WESTERN AREA', 
-            'FL': 'AE - EASTERN AREA',
-            'NY': 'AE - EASTERN AREA',
-            'OR': 'AW - WESTERN AREA',
-            'WA': 'AW - WESTERN AREA'
-        }
+#         # Map state abbreviations to areas
+#         state_to_area_map = {
+#             'CA': 'AW - WESTERN AREA',
+#             'TX': 'AW - WESTERN AREA', 
+#             'FL': 'AE - EASTERN AREA',
+#             'NY': 'AE - EASTERN AREA',
+#             'OR': 'AW - WESTERN AREA',
+#             'WA': 'AW - WESTERN AREA'
+#         }
         
-        area = state_to_area_map.get(clicked_state, None)
-        if area:
-            # Filter data based on clicked state
-            import pandas as pd
-            df = pd.DataFrame(current_data)
-            filtered_df = df[df['tm_area'] == area]
+#         area = state_to_area_map.get(clicked_state, None)
+#         if area:
+#             # Filter data based on clicked state
+#             import pandas as pd
+#             df = pd.DataFrame(current_data)
+#             filtered_df = df[df['tm_area'] == area]
             
-            return filtered_df.to_dict('records'), area, dash.no_update, dash.no_update, dash.no_update
+#             return filtered_df.to_dict('records'), area, dash.no_update, dash.no_update, dash.no_update
     
-    raise PreventUpdate
+#     raise PreventUpdate
 
 
 
@@ -1045,4 +1032,4 @@ app = dash_app.server
 
 if __name__ == '__main__':
     # Run the Dash app directly when executing the script
-    dash_app.run(host='0.0.0.0', port=5000, debug=True)
+    dash_app.run(host='0.0.0.0', port=8000, debug=True)
