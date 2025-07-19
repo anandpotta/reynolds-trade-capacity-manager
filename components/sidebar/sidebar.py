@@ -71,11 +71,13 @@ def create_sidebar():
             
             # Logout button
             html.Div([
-                html.A([
+                html.Button([
                     html.I(className="fas fa-sign-out-alt me-2"),
                     html.Span("Logout")
-                ], href="/logout", id="logout-link", className="text-decoration-none text-danger d-flex align-items-center py-2",
-                   style={'fontSize': '0.85rem', 'fontWeight': '500'})
+                ], id="logout-button", className="btn btn-link text-danger d-flex align-items-center py-2",
+                   style={'fontSize': '0.85rem', 'fontWeight': '500', 'border': 'none', 
+                          'background': 'none', 'textDecoration': 'none', 'padding': '0.5rem 0',
+                          'width': '100%', 'textAlign': 'left'}, n_clicks=0)
             ], className="px-3"),
             
             # User info
