@@ -1,0 +1,396 @@
+/* Custom CSS for Reynolds Trade Capacity Manager */
+
+/* Make alert dismiss button smaller */
+.alert-custom .btn-close {
+    width: 0.75rem !important;
+    height: 0.75rem !important;
+    padding: 0.25rem !important;
+    font-size: 0.75rem !important;
+    background-size: 0.5rem !important;
+}
+
+/* Ensure alert stays visible */
+.alert-custom {
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* Page transition animations */
+.page-container {
+    animation: fadeSlideIn 0.4s ease-out;
+    transform-origin: center;
+}
+
+@keyframes fadeSlideIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.page-exit {
+    animation: fadeSlideOut 0.3s ease-in;
+}
+
+@keyframes fadeSlideOut {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+}
+
+/* Sidebar animations */
+.sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1040;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+
+.sidebar-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Enhanced sidebar transitions */
+.sidebar {
+    transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Navigation link hover effects */
+.nav-link-custom {
+    transition: all 0.2s ease-in-out;
+    border-radius: 0.375rem;
+    margin: 0.125rem 0.5rem;
+}
+
+.nav-link-custom:hover {
+    background-color: rgba(99, 102, 241, 0.1);
+    transform: translateX(4px);
+}
+
+.nav-link-custom.active {
+    background-color: rgba(99, 102, 241, 0.15);
+    color: #6366f1;
+    border-left: 3px solid #6366f1;
+}
+
+/* Content area transitions */
+.content-wrapper {
+    transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Card entrance animations */
+.card-animate {
+    animation: cardSlideUp 0.5s ease-out;
+}
+
+@keyframes cardSlideUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Staggered animations for multiple cards */
+.card-animate:nth-child(1) { animation-delay: 0.1s; }
+.card-animate:nth-child(2) { animation-delay: 0.2s; }
+.card-animate:nth-child(3) { animation-delay: 0.3s; }
+.card-animate:nth-child(4) { animation-delay: 0.4s; }
+
+/* Filter dropdown animations */
+.filter-dropdown .dropdown-menu {
+    animation: dropdownFadeIn 0.2s ease-out;
+}
+
+@keyframes dropdownFadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Map container animations */
+.map-container {
+    animation: mapZoomIn 0.6s ease-out;
+}
+
+@keyframes mapZoomIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Grid animations */
+.grid-container {
+    animation: gridSlideIn 0.5s ease-out;
+}
+
+@keyframes gridSlideIn {
+    0% {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Loading spinner for transitions */
+.transition-loader {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #f3f3f3;
+    border-top: 2px solid #6366f1;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Responsive animations */
+@media (max-width: 768px) {
+    .page-container {
+        animation: fadeSlideInMobile 0.3s ease-out;
+    }
+    
+    @keyframes fadeSlideInMobile {
+        0% {
+            opacity: 0;
+            transform: translateX(30px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+}
+
+/* Sidebar Overlay */
+.sidebar-overlay {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    background-color: rgba(0, 0, 0, 0) !important;
+    z-index: 999 !important;
+    pointer-events: none !important;
+    transition: background-color 0.3s ease !important;
+    cursor: pointer;
+}
+
+.sidebar-overlay.show {
+    background-color: rgba(0, 0, 0, 0.5) !important;
+    pointer-events: auto !important;
+}
+
+/* Sidebar specific styles */
+#sidebar {
+    position: fixed !important;
+    top: 0 !important;
+    width: 280px !important;
+    height: 100vh !important;
+    background-color: white !important;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1) !important;
+    z-index: 1050 !important;
+    transition: left 0.3s ease !important;
+}
+
+/* Hamburger menu styles */
+#hamburger-menu {
+    position: relative !important;
+    z-index: 1300 !important;
+}
+
+/* Multiselect Dropdown Styles */
+.dash-dropdown {
+    font-size: 14px !important;
+}
+
+.Select-control {
+    border: 1px solid #ddd !important;
+    border-radius: 6px !important;
+    min-height: 38px !important;
+}
+
+.Select-placeholder {
+    color: #999 !important;
+    font-size: 14px !important;
+}
+
+.Select-value {
+    font-size: 14px !important;
+}
+
+.Select--multi .Select-value {
+    background-color: #e3f2fd !important;
+    border: 1px solid #90caf9 !important;
+    color: #1976d2 !important;
+    border-radius: 4px !important;
+    margin: 2px !important;
+}
+
+.Select--multi .Select-value-icon {
+    border-right: 1px solid #90caf9 !important;
+}
+
+.Select--multi .Select-value-icon:hover {
+    background-color: #bbdefb !important;
+    color: #0d47a1 !important;
+}
+
+.Select-menu-outer {
+    border: 1px solid #ddd !important;
+    border-radius: 6px !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1) !important;
+    margin-top: 2px !important;
+}
+
+.Select-option {
+    padding: 8px 12px !important;
+    font-size: 14px !important;
+}
+
+.Select-option.is-selected {
+    background-color: #e3f2fd !important;
+}
+
+.Select-option.is-focused {
+    background-color: #f5f5f5 !important;
+}
+
+/* Enhanced UI styles for professional look */
+.dashboard-card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    padding: 24px;
+    margin-bottom: 20px;
+    transition: box-shadow 0.3s ease;
+}
+
+.dashboard-card:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* Filter container improvements */
+.filter-container {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    margin-bottom: 20px;
+}
+
+/* Navigation link hover effects */
+.nav-link {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.nav-link::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 0;
+    background-color: #6366f1;
+    transition: height 0.3s ease;
+}
+
+.nav-link:hover::before,
+.nav-link.active::before {
+    height: 60%;
+}
+
+/* Grid improvements */
+.ag-theme-alpine {
+    --ag-header-background-color: #f8fafc;
+    --ag-header-foreground-color: #1e293b;
+    --ag-row-hover-color: #f1f5f9;
+    --ag-selected-row-background-color: #e0e7ff;
+    --ag-font-size: 14px;
+}
+
+.ag-header-cell-label {
+    font-weight: 600;
+}
+
+/* Map container styling */
+.map-wrapper {
+    position: relative;
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+/* Typography improvements */
+h1, h2, h3, h4, h5, h6 {
+    color: #1e293b;
+    font-weight: 600;
+}
+
+.page-title {
+    font-size: 24px;
+    font-weight: 600;
+    color: #1e293b;
+    margin-bottom: 24px;
+}
+
+/* Button enhancements */
+.btn {
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+}
+
+/* Loading states */
+.loading-spinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #f3f3f3;
+    border-top: 2px solid #6366f1;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto;
+}
